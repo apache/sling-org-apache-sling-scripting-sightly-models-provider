@@ -84,6 +84,7 @@ public class SlingModelsUseProvider implements UseProvider {
     private static final Logger LOGGER = LoggerFactory.getLogger(SlingModelsUseProvider.class);
     private static final Pattern JAVA_PATTERN = Pattern.compile(
         "([[\\p{L}&&[^\\p{Lu}]]_$][\\p{L}\\p{N}_$]*\\.)*[\\p{Lu}_$][\\p{L}\\p{N}_$]*");
+    private static final String ADAPTABLE_KEY = "adaptable";
 
 
     @Reference
@@ -119,8 +120,15 @@ public class SlingModelsUseProvider implements UseProvider {
         // pass parameters as request attributes
         Map<String, Object> overrides = setRequestAttributes(request, arguments);
 
+        // Get adaptable from arguments
+        Object adaptableArgument = arguments.get(ADAPTABLE_KEY);
+
         try {
-            // try to instantiate class via Sling Models (first via request, then via resource)
+            // try to instantiate class via Sling Models (in order: via adaptableArgument, request, resource)
+            if (modelFactory.canCreateFromAdaptable(adaptableArgument, cls)) {
+                LOGGER.debug("Trying to instantiate class {} as Sling Model from adaptable argument.", cls);
+                return ProviderOutcome.notNullOrFailure(modelFactory.createModel(adaptableArgument, cls));
+            }
             if (modelFactory.canCreateFromAdaptable(request, cls)) {
                 LOGGER.debug("Trying to instantiate class {} as Sling Model from request.", cls);
                 return ProviderOutcome.notNullOrFailure(modelFactory.createModel(request, cls));
