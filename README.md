@@ -9,3 +9,5 @@ This module is part of the [Apache Sling](https://sling.apache.org) project.
 The Apache Sling Scripting HTL Sling Models Use Provider adds support for accessing
 [Sling Models](https://sling.apache.org/documentation/bundles/models.html)
 from HTL's Use-API leveraging the `ModelFactory`.
+
+Version 1.4.0-1.4.0 of the `org.apache.sling.scripting.sightly` module makes this module obsolete, since the functionality of the `SlingModelsUseProvider` has been fully integrated into the HTL Script Engine.
