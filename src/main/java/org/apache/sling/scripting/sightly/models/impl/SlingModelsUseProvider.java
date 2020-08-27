@@ -56,6 +56,10 @@ import org.slf4j.LoggerFactory;
  * <p>
  * In case any of those preconditions are not fulfilled the other registered {@link UseProvider}s will be queried.
  * </p>
+ *
+ * @deprecated This service's functionality has been fully integrated into the
+ * {@link org.apache.sling.scripting.sightly.impl.engine.extension.use.JavaUseProvider} starting from version 1.4.0-1.4.0 of the {@code
+ * org.apache.sling.scripting.sightly} bundle.
  */
 @Component(
         service = UseProvider.class,
@@ -69,6 +73,7 @@ import org.slf4j.LoggerFactory;
                 Constants.SERVICE_RANKING + ":Integer=95"
         }
 )
+@Deprecated
 public class SlingModelsUseProvider implements UseProvider {
 
     @interface Configuration {
