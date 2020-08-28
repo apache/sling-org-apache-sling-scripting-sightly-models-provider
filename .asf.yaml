@@ -1,0 +1,7 @@
+github:
+  description: "Apache Sling Scripting HTL Sling Models Use Provider (deprecated)"
+  homepage: "https://sling.apache.org"
+  labels:
+    - java
+    - sling
+    - deprecated

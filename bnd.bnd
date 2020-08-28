@@ -1,1 +1,0 @@
-Require-Capability: io.sightly.runtime; filter:="(&(version>=1.0)(!(version>=2.0)))", io.sightly; filter:="(&(version>=1.0)(!(version>=2.0)))"
